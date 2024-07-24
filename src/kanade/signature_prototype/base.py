@@ -5,7 +5,7 @@ from itertools import groupby
 from typing import Any, Literal
 from inspect import Signature as RuntimeSignature, Parameter as RuntimeParameter, _ParameterKind
 
-from kanade.signature.error import (
+from kanade.signature_prototype.error import (
     DuplicatedParameterName,
     KeywordAssignForPositional,
     KeywordParameterNotFound,

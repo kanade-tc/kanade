@@ -11,3 +11,11 @@ class PyItem:
 @dataclass
 class PyModule(PyItem):
     ast_tree: Tree
+
+@dataclass
+class PyStatement(PyItem):
+    ...
+
+@dataclass
+class PyExp(PyItem):
+    ...

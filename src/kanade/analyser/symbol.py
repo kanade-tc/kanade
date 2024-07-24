@@ -22,6 +22,8 @@ class TypeSymbolSpec:
     default: None = None
 
 
+# TODO: ParamSpec, TypeVarTuple, etc.
+
 @dataclass(frozen=True, eq=True)
 class TypeSymbol:
     spec: TypeSymbolSpec

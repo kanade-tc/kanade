@@ -1,5 +1,5 @@
 import pytest
-from kanade.signature.base import Parameter, Signature, BindResult, BindOptions
+from kanade.signature_prototype.base import Parameter, Signature, BindResult, BindOptions
 
 @pytest.fixture
 def signature():

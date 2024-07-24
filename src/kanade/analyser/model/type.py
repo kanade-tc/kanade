@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from kanade.analyser.signature import TypedSignature
-from kanade.analyser.symbol import TypeSymbolSpec
+from kanade.analyser.symbol import TypeSymbolSpec, TypeSymbol
 from kanade.analyser.utils import Singleton
 
 LITERAL_TYPES = str | int | float | bool | None
@@ -19,29 +19,19 @@ class KnAlias(KnBaseType):
 
 
 @dataclass
-class KnAny(KnBaseType, metaclass=Singleton): ...
-
-
-@dataclass
-class KnNever(KnBaseType, metaclass=Singleton): ...
-
-
-@dataclass
-class KnUnbounded(KnBaseType, metaclass=Singleton): ...
-
-
-@dataclass
 class KnType(KnBaseType): ...
 
 
 @dataclass
-class KnUnpack(KnBaseType):
-    target: KnBaseType
+class KnAny(KnType, metaclass=Singleton): ...
 
 
 @dataclass
-class KnVariable(KnBaseType):
-    symbol: TypeSymbolSpec
+class KnNever(KnType, metaclass=Singleton): ...
+
+
+@dataclass
+class KnUnbounded(KnType, metaclass=Singleton): ...
 
 
 @dataclass
@@ -50,6 +40,20 @@ class KnNone(KnType, metaclass=Singleton): ...
 
 @dataclass
 class KnEllipsis(KnType, metaclass=Singleton): ...
+
+
+@dataclass
+class KnUnknown(KnType, metaclass=Singleton): ...
+
+
+@dataclass
+class KnUnpack(KnType):
+    target: KnBaseType
+
+
+@dataclass
+class KnVariable(KnType):
+    symbol: TypeSymbol
 
 
 @dataclass
@@ -79,7 +83,7 @@ class KnClassOf(KnType):
 
 
 @dataclass
-class KnProtocol(KnBaseType): ...
+class KnProtocol(KnType): ...
 
 
 @dataclass
@@ -96,8 +100,8 @@ class KnCallable(KnFunctionLike):
     return_type: KnBaseType
 
     @property
-    def signature(self) -> TypedSignature:
-        ...  # TODO
+    def signature(self) -> TypedSignature: ...  # TODO
+
 
 @dataclass
 class KnOverloaded(KnFunctionLike):
@@ -108,5 +112,5 @@ class KnOverloaded(KnFunctionLike):
 
 
 @dataclass
-class KnLiteral(KnFunctionLike):
+class KnLiteral(KnType):
     value: LITERAL_TYPES

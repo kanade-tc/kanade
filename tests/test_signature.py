@@ -1,5 +1,5 @@
 from hypothesis import given, strategies as st
-from kanade.signature.base import Parameter, Signature
+from kanade.signature_prototype.base import Parameter, Signature
 
 # 生成 name 的策略
 
